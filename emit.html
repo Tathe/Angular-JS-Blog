@@ -1,0 +1,112 @@
+<html>
+
+	<head>
+		<title>Broadcast And Emit Difference</title>
+		<script src="Opcito/MAO/API/moveassist/frontend/app/theme/js/jquery/jquery-2.1.1.min.js"></script>
+		<script src="Opcito/MAO/API/moveassist/frontend/app/vendorlibs/angular.min.js"></script>
+	</head>
+	
+	<body>
+	
+		<div ng-app="TransportApp">
+		
+			<div ng-controller="VehicleCtrl">
+				<div ng-controller="CarCtrl"></div>
+				<div ng-controller="BusCtrl">
+					<div ng-controller="BRTBusCtrl"></div>				
+				</div>
+			</div>
+			<div ng-controller="TrainCtrl">
+				<div ng-controller="LocalCtrl"></div>
+				<div ng-controller="MetroCtrl"></div>
+			</div>
+			<div ng-controller="AirlineCtrl">
+				<div ng-controller="PlaneCtrl"></div>
+				<div ng-controller="HelicopterCtrl"></div>
+			</div>
+		</div>
+		
+		<script>
+
+			"use strict";
+			
+			angular.module("TransportApp", [])
+
+				.controller("VehicleCtrl", function ($scope) {
+
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : VehicleCtrl Recieved Message : " + object.message);					
+					});
+
+				})
+				.controller("CarCtrl", function ($scope) {
+
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : CarCtrl Recieved Message : " + object.message);					
+					});
+
+				})
+				.controller("BusCtrl", function ($scope) {
+
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : BusCtrl Recieved Message : " + object.message);					
+					});
+
+				})
+				.controller("BRTBusCtrl", function ($scope, $rootScope) {
+					
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : BRTBusCtrl Recieved Message : " + object.message);					
+					});
+					
+					$scope.$emit("message",{
+						"message": "BRT Bus Controller Emit"
+					});
+
+				})
+ 				.controller("TrainCtrl", function ($scope) {
+
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : TrainCtrl Recieved Message : " + object.message);					
+					});
+
+				})
+				.controller("LocalCtrl", function ($scope) {
+
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : LocalCtrl Recieved Message : " + object.message);					
+					});
+
+				})
+				.controller("MetroCtrl", function ($scope, $rootScope) {
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : MetroCtrl Recieved Message : " + object.message);					
+					});
+				})
+				.controller("AirlineCtrl", function ($scope) {
+
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : AirlineCtrl Recieved Message : " + object.message);					
+					});
+
+				})
+				.controller("PlaneCtrl", function ($scope) {
+
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : PlaneCtrl Recieved Message : " + object.message);					
+					});
+					
+				})
+				.controller("HelicopterCtrl", function ($scope, $rootScope) {
+
+					$scope.$on("message", function(event, object) {
+						console.log("Controller : HelicopterCtrl Recieved Message : " + object.message);					
+					});
+				})
+				
+		</script>
+		
+	</body>
+		
+</html>
+
