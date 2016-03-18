@@ -6,33 +6,6 @@ Although there can be different approaches to achieve this goal, one that is rea
 $rootScope - support three methods namely $broadcast(), $emit() and $on() that facilitate event driven publisher-subscriber model for sending notifications and passing data 
 between the controllers. In this article I will discuss how to raise events using $emit() and then how to handle those events using $on().
 
-Overview of $emit() and $on()
-Before you dig into the examples discussed below it would be worthwhile to take a quick look at the purpose and use of $emit() and $on(). $emit() allow you to raise an event in your AngularJS application. It sends an event upwards from the current controller to all of its parent controllers. From the syntax point of view a typical call to $emit() will look like this:
-
-
-$scope.$emit("MyEvent",data);
-
-
-Here, MyEvent is the developer defined name of the event that you wish to raise. The optional data parameter can be any type of data that you wish to pass when MyEvent is dispatched by the system. For example, if you wish to pass data from one controller to another that data can go as this second parameter.
-event raised by $emit() can be handled by wiring an event handler using $on() method. A typical call to $on() will look like this:
-
-
-$scope.$on("MyEvent", function(evt,data){ 
-  // handler code here });
-
-
-Now that you know what $emit() and $on() do let's put them to use in the following examples:
-Event system on $scope and $rootScope, When it comes to communicating between two or more AngularJS controllers there can be two possible arrangements:
-1. Controllers under consideration are nested controllers. That means they have parent-child relationship.
-2. Controllers under consideration are sibling controllers. That means they are at the same level without any parent-child relationship.
-To see how $emit() and $on() can be used with nested controllers, you will develop a simple application as shown below
-
-The application consists of ten AngularJS controllers - VehicleCtrl, CarCtrl, BusCtrl, BRTBusCtrl, TrainCtrl, LocalCtrl, 
-MetroCtrl, AirlineCtrl, PlaneCtrl and HelicopterCtrl. VehicleCtrl, BusCtrl, and BRTBusCtrl are nested controller inside 
-each other. TrainCtrl and LocalCtrl are nested controller inside each other. (Vehicle , TrainCtrl, AirLineCtrl), 
-(CarCtrl, BusCtrl) and (PlaneCtrl, HelicopterCtrl) are siblings. 
-The HTML markup of the page will look like this:
-
 <div ng-app="TransportApp">
 	<div ng-controller="VehicleCtrl">
 		<div ng-controller="CarCtrl"></div>
